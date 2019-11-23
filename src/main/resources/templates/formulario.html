@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head th:replace="layout/layout :: head">
+        <link rel="stylesheet" href="../static/css/bootstrap-reboot.min.css" type="text/css"/>
+
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <div th:replace="layout/layout :: nav"></div>
+
+        <!-- FORMULARIO -->
+
+        <form method="POST" enctype="multipart/form-data" 
+              th:object="${juego}" style="margin: 10px;" th:action="@{/formulario}">
+            <br>
+            <div class="form-row">
+                <div class="from group col-md-2"></div>
+                <div class="form-group col-md-8">
+                    <div class="custom-file">
+                        <div class="imagePreview"></div>
+                        <label for="file">Subir Imagen: </label>
+                        <input type="file" name="file" class="form-control-file" id="file" onchange="previewImage(this, [256], 4);" >
+                    </div>
+                </div>
+                <div class="from group col-md-2"></div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre del Juego: </label>
+                    <input class="form-control" type="text" id="juego" for="juego" th:field="*{juego}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Fecha de Lanzamiento: </label>
+                    <input class="form-control" type="date" id="fecLanz" for="fecLanz" th:field="*{fecLanz}">
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-4">   
+                    <label for="categoria">Categoria: </label>
+                    <select class="form-control" id="categoria" th:field="*{categoria}" name="categoria">
+                        <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.categoria}"> </option>
+                    </select>
+                </div>  
+                <div class="form-group col-md-4">
+                    <label for="categoria">Modo de Juego: </label>
+                    <select class="form-control" id="categoria" name="tipomodo">
+                        <option th:each="tm : ${modos}" th:value="${tm.id}" th:text="${tm.tipo}"> </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="categoria">Plataforma de Juego: </label>
+                    <select class="form-control" id="categoria" name="tipoplataforma">
+                        <option th:each="tp : ${plataformas}" th:value="${tp.id}" th:text="${tp.tipo}"> </option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            
+
+        </form>
+
+        <script src="/js/html5.image.preview.js" type="text/javascript"></script>
+
+        <!-- Footer -->
+        <div th:replace="layout/layout :: footer"></div>
+
+    </body>
+
+</html>

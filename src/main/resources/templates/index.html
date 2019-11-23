@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head th:replace="layout/layout :: head">
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <div th:replace="layout/layout :: nav"></div>
+
+        <div class="container">
+            <div class="row" style="margin: 20px;">
+                <div class="col-12 col-lg-4 col-md-12 col-sm-12" th:each="j : ${juegos}">
+                    <br>
+                    <div class="card" style="width: 18rem;"> 
+                        <img th:src="@{'/uploads/' + ${j.foto}}"
+					th:alt="${j.foto}" class="card-img-top" >
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${j.juego}"></h5>
+                            <br>
+                            <p>Categoria: <b th:text="${j.categoria.categoria}"></b> </p>
+                            
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <a class="btn btn-success" th:src="@{/formulario}">Registrar Juego</a>
+
+        <!-- Footer -->
+        <div th:replace="layout/layout :: footer"></div>
+
+    </body>
+
+</html>
